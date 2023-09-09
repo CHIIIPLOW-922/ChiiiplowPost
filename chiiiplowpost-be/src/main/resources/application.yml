@@ -7,7 +7,6 @@ server:
     session:
       timeout: PT60M
 
-
 #???
 spring:
   #MYSQL??

@@ -4,6 +4,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+/**
+ * 原神，启动！
+ * @author CHIIIPLOW
+ * @date 2023/09/10
+ */
 @SpringBootApplication(scanBasePackages = "com.chiiiplow.post")
 @MapperScan("com.chiiiplow.post.mapper")
 public class ChiiiplowpostBeApplication {
