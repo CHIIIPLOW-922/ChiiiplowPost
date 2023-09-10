@@ -3,6 +3,7 @@ package com.chiiiplow.post.entity.pojo;
 import lombok.Data;
 
 /**
+ * 点赞实体类
  * @author CHIIIPLOW
  * @date 2023/09/10
  */

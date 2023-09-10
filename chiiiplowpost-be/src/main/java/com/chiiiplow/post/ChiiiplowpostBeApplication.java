@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
- * 原神，启动！
  * @author CHIIIPLOW
  * @date 2023/09/10
  */

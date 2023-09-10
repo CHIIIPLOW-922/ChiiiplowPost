@@ -5,6 +5,7 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 /**
+ * 帖子评论实体类
  * @author CHIIIPLOW
  * @date 2023/09/10
  */
@@ -16,4 +17,5 @@ public class PostComment {
     private String content;
     private Timestamp createdAt;
     private boolean isDeleted;
+    private Timestamp lastUpdated;
 }
