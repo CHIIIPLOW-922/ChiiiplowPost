@@ -13,7 +13,7 @@
 
 #### 2. 数据库及中间件
 - MyBatis
-- MySql
+- MySQL
 - Redis
 - ElasticSearch
 
@@ -60,6 +60,7 @@
 
 ## 数据库设计
 
+
 #### 1. 用户表
 ```sql
 -- 用户表 (User)
@@ -70,7 +71,8 @@ CREATE TABLE IF NOT EXISTS PostUser (
     PasswordHash VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码哈希',
     Avatar VARCHAR(255) DEFAULT NULL COMMENT '头像',
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除'
+    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除',
+    LastUpdated timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
 ) COMMENT='用户信息表';
 
 -- 帖子表 (Post)
@@ -80,7 +82,8 @@ CREATE TABLE IF NOT EXISTS Post (
     Content TEXT COMMENT '帖子内容',
     Media VARCHAR(255) DEFAULT NULL COMMENT '多媒体',
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除'
+    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除',
+    LastUpdated timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
 ) COMMENT='帖子信息表';
 
 -- 评论表 (PostComment)
@@ -90,7 +93,8 @@ CREATE TABLE IF NOT EXISTS PostComment (
     UserID INT DEFAULT 0 COMMENT '用户ID',
     Content TEXT COMMENT '评论内容',
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除'
+    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除',
+    LastUpdated timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
 ) COMMENT='评论信息表';
 
 -- 关注表 (PostFollow)
@@ -108,4 +112,15 @@ CREATE TABLE IF NOT EXISTS PostLike (
     UserID INT DEFAULT 0 COMMENT '用户ID',
     IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除'
 ) COMMENT='点赞信息表';
+
+-- 创建管理员表 (Admin)
+CREATE TABLE IF NOT EXISTS PostAdmin (
+  id INT AUTO_INCREMENT PRIMARY KEY COMMENT '管理员ID',
+  username VARCHAR(255) NOT NULL COMMENT '用户名',
+  password VARCHAR(255) NOT NULL COMMENT '密码',
+  email VARCHAR(255) COMMENT '电子邮件地址',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后登录时间'
+) COMMENT '管理员信息表';
+
 ```
