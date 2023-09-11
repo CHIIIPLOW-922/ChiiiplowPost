@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chiiiplow.post.mapper.PostMapper">
+    <resultMap id="baseMap" type="com.chiiiplow.post.entity.pojo.Post">
+        <id column="PostID" property="postID" jdbcType="INTEGER"/>
+        <result column="UserID" property="userID" jdbcType="INTEGER"/>
+        <result column="Content" property="content" jdbcType="LONGNVARCHAR"/>
+        <result column="Media" property="media" jdbcType="VARCHAR"/>
+        <result column="CreatedAt" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="IsDeleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="LastUpdated" property="lastUpdated" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>

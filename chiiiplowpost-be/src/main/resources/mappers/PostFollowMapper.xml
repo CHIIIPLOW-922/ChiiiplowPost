@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chiiiplow.post.mapper.PostFollowMapper">
+    <resultMap id="baseMap" type="com.chiiiplow.post.entity.pojo.PostFollow">
+        <id column="FollowID" property="followID" jdbcType="INTEGER"/>
+        <result column="FollowerID" property="followerID" jdbcType="INTEGER"/>
+        <result column="FollowingID" property="followingID" jdbcType="INTEGER"/>
+        <result column="IsDeleted" property="isDeleted" jdbcType="TINYINT"/>
+    </resultMap>
+</mapper>

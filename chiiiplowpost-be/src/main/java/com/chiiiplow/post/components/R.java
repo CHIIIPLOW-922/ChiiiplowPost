@@ -10,11 +10,20 @@ public class R implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-    private Response response;
+    /***
+     * 状态码
+     */
+    private int code;
     /**
      * 返回数据
      */
     private Object data;
+
+    /**
+     * 返回信息
+     */
+    private String msg;
+
 
     /**
      *	返回数据总数
@@ -25,13 +34,15 @@ public class R implements Serializable {
      * 构造方法
      */
     public R(Response response, Object data, Long total) {
-        this.response = response;
+        this.code = response.getCode();
+        this.msg = response.getMessage();
         this.data = data;
         this.total = total;
     }
 
     public R(Response response) {
-        this.response = response;
+        this.code = response.getCode();
+        this.msg = response.getMessage();
     }
 
     /**

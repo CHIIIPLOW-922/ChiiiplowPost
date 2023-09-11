@@ -2,6 +2,7 @@ package com.chiiiplow.post.entity.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -10,12 +11,13 @@ import java.sql.Timestamp;
  * @date 2023/09/10
  */
 @Data
-public class PostAdmin {
+public class PostAdmin implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String username;
     private String password;
     private String email;
-    private Timestamp createAt;
+    private Timestamp createdAt;
     private Timestamp lastLogin;
     private boolean isDeleted;
 }

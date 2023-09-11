@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2023/09/10
  */
 @SpringBootApplication(scanBasePackages = "com.chiiiplow.post")
-@MapperScan("com.chiiiplow.post.mapper")
+@MapperScan(basePackages = "com.chiiiplow.post.mapper")
 public class ChiiiplowpostBeApplication {
 
 	public static void main(String[] args) {

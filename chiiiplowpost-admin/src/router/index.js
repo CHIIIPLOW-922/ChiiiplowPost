@@ -54,7 +54,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.length != 0) {
     if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
-        if ((localStorage.getItem("admin"))!==null) { // 通过vuex state获取当前的user是否存在
+        if ((window.localStorage.getItem("admin"))!==null) { // 通过vuex state获取当前的user是否存在
             next();
         } else {
             next({
@@ -63,7 +63,7 @@ router.beforeEach((to, from, next) => {
             })
         }
     } else {
-        if ((localStorage.getItem("admin"))!==null) { // 判断是否登录
+        if ((window.localStorage.getItem("admin"))!==null) { // 判断是否登录
             if (to.path != "/" && to.path != "/login") { //判断是否要跳到登录界面
                 next();
             } else {
