@@ -1,10 +1,20 @@
 <template>
   <div id="app">
+    <n-message-provider>
+    <MessageApi />
+  </n-message-provider>
     <router-view />
   </div>
 </template>
 
-<script setup>
+<script>
+import { NMessageProvider } from "naive-ui";
+import MessageApi from "./components/MessageApi.vue";
+export default {
+  components: { MessageApi, NMessageProvider },
+  name: "App",
+  setup(props) {}
+}
 </script>
 <style scoped>
 html,

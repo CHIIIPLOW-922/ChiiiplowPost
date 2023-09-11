@@ -46,4 +46,4 @@ export const particlesLoaded = async (container) => {
 
 export const particlesInit = async (engine) => {
     await loadFull(engine);
-  };
+};

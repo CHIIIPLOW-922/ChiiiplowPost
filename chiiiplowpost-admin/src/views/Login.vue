@@ -22,12 +22,11 @@
         <n-form-item
           class="naive-form-item"
           path="username"
-          :error="usernameError"
           style="padding-top: 10px; padding-down: 0"
         >
           <n-input
             size="large"
-            v-model="loginForm.username"
+            v-model:value="loginForm.username"
             placeholder="请输入用户名"
             ><template #prefix
               ><n-icon
@@ -41,12 +40,11 @@
         <n-form-item
           class="naive-form-item"
           path="password"
-          :error="passwordError"
         >
           <n-input
             size="large"
             type="password"
-            v-model="loginForm.password"
+            v-model:value="loginForm.password"
             placeholder="请输入密码"
             show-password-on="click"
             ><template #prefix
@@ -71,7 +69,7 @@
         <n-form-item class="naive-form-item" path="code">
           <n-input
             size="large"
-            v-model="loginForm.code"
+            v-model:value="loginForm.code"
             placeholder="请输入验证码"
             ><template #prefix
               ><n-icon
@@ -108,6 +106,7 @@
 import { UserOutlined, LockFilled, CarryOutTwotone } from "@vicons/antd";
 import { GlassesOutline, Glasses, CodeWorking } from "@vicons/ionicons5";
 import { defineComponent, ref } from "vue";
+import {useRouter} from "vue-router";
 import {
   particlesOptions,
   particlesLoaded,
@@ -118,6 +117,17 @@ export default defineComponent({
   components: {},
   props: {},
   setup() {
+    const router = useRouter();
+    const loginFormRef = ref({
+      username: null,
+      password: null,
+      code: null,
+    });
+    const rules = {
+      username: [{ required: true, message: "请输入账号", trigger: "blur" }],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+      code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
+    };
     return {
       //图标
       CarryOutTwotone,
@@ -131,10 +141,14 @@ export default defineComponent({
       particlesLoaded: particlesLoaded,
       particlesInit: particlesInit,
       //登录表单
-      loginForm: {
-        username: "",
-        password: "",
-      },
+      loginForm: loginFormRef,
+      //登录校验
+      rules,
+      login(){
+        console.log(loginFormRef.value.password)
+        router.push('/post')
+        window.$message.success('登录成功')
+      }
     };
   },
 });
