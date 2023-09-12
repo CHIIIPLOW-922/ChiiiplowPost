@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Layout from '../layout/Layout.vue'
+import axios from 'axios'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,36 +55,43 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.length != 0) {
     if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
-        if ((window.localStorage.getItem("admin"))!==null) { // 通过vuex state获取当前的user是否存在
-            next();
-        } else {
-            next({
-                path: '/login',
-                query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-            })
-        }
-    } else {
-        if ((window.localStorage.getItem("admin"))!==null) { // 判断是否登录
-            if (to.path != "/" && to.path != "/login") { //判断是否要跳到登录界面
-                next();
-            } else {
-                /**
-                 * 防刷新，如果登录，修改路由跳转到登录页面，修改路由为登录后的首页 
-                 */
-                next({
-                    path: '/user'
-                })
+      if ((window.localStorage.getItem("login_flag")) !== null) { // 通过vuex state获取当前的user是否存在
+        axios.post("/api/admin/checkLogin", {
+          loginFlag: window.localStorage.getItem("login_flag")
+        })
+          .then((res) => {
+            if (res.data.code === 200) {
+              next();
             }
+          })
+      } else {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        })
+      }
+    } else {
+      if ((window.localStorage.getItem("login_flag")) !== null) { // 判断是否登录
+        if (to.path != "/" && to.path != "/login") { //判断是否要跳到登录界面
+          next();
         } else {
-            next();
+          /**
+           * 防刷新，如果登录，修改路由跳转到登录页面，修改路由为登录后的首页 
+           */
+          next({
+            path: '/user'
+          })
         }
+      } else {
+        next();
+      }
     }
-} else {
+  } else {
     next({
-        path: '/login',
-        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      path: '/login',
+      query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
     })
-}
+  }
 })
 
 export default router

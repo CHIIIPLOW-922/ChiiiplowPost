@@ -118,7 +118,7 @@ import {
   particlesLoaded,
   particlesInit,
 } from "../config/particles-config";
-import axios from 'axios';
+import axios from "axios";
 
 export default defineComponent({
   components: {},
@@ -200,18 +200,28 @@ export default defineComponent({
     const loginMethod = () => {
       uform.value?.validate((errors) => {
         if (!errors) {
-          if (loginFormRef.value.canvasTemp.toLocaleLowerCase() === loginFormRef.value.code.toLocaleLowerCase()) {
-            axios.post("/api/admin/login", {
+          if (
+            loginFormRef.value.canvasTemp.toLocaleLowerCase() ===
+            loginFormRef.value.code.toLocaleLowerCase()
+          ) {
+            axios
+              .post("/api/admin/login", {
                 username: loginFormRef.value.username,
                 password: loginFormRef.value.password,
               })
-              .then((res)=>{
-                if(res.data.code === 200){
+              .then((res) => {
+                if (res.data.code === 200) {
                   console.log(res.data);
-                  window.$message.success("登录成功");
-                  window.localStorage.setItem("admin",loginFormRef.value);
-                  }
-              })
+                  window.localStorage.setItem("login_flag", res.data.data);
+                  //清空表单
+                  loginFormRef.value.username = null;
+                  loginFormRef.value.password = null;
+                  loginFormRef.value.code = null;
+                  window.$message.success(res.data.msg);
+                  //路由跳转
+                  router.push("/user");
+                }
+              });
           } else {
             loginFormRef.value.username = null;
             loginFormRef.value.password = null;
@@ -239,7 +249,6 @@ export default defineComponent({
       // 监听Enter键事件
       document.addEventListener("keyup", handleEnterKey);
     });
-    
 
     return {
       //图标

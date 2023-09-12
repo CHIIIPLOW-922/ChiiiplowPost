@@ -9,7 +9,7 @@ export const particlesOptions = {
             resize: true,
         },
         modes: {
-            bubble: { distance: 200, duration: 3, opacity: 1, size: 30 },
+            bubble: { distance: 300, duration: 3, opacity: 1, size: 30 },
             push: { quantity: 4 },
             repulse: { distance: 200, duration: 0.4 },
         },
