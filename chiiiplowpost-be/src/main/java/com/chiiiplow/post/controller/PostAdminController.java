@@ -22,27 +22,40 @@ public class PostAdminController {
     private PostAdminService postAdminService;
 
     /**
-     *	添加后台管理员接口
+     * 添加后台管理员接口
      */
     @RequestMapping(path = "/addPostAdmin", method = RequestMethod.POST)
-    public R  addPostAdmin(@RequestBody PostAdmin postAdmin){
-        try{
-        return this.postAdminService.addPostAdmin(postAdmin);
-        }catch (Exception e){
+    public R addPostAdmin(@RequestBody PostAdmin postAdmin) {
+        try {
+            return this.postAdminService.addPostAdmin(postAdmin);
+        } catch (Exception e) {
             return R.fail(Response.CODE_500);
         }
     }
 
     /**
-     *	登录后台管理员接口
+     * 登录后台管理员接口
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public R  loginPostAdmin(@RequestBody PostAdmin postAdmin){
-        try{
+    public R loginPostAdmin(@RequestBody PostAdmin postAdmin) {
+        try {
             return this.postAdminService.login(postAdmin);
-        }catch (Exception e){
+        } catch (Exception e) {
             return R.fail(Response.CODE_500);
         }
     }
+
+    /***
+     * 验证登录情况
+     */
+    @RequestMapping(path = "/checkLogin", method = RequestMethod.POST)
+    public R checkLogin(@RequestBody PostAdmin postAdmin) {
+        try {
+            return this.postAdminService.checkLogin(postAdmin);
+        } catch (Exception e) {
+            return R.fail(Response.CODE_500);
+        }
+    }
+
 
 }

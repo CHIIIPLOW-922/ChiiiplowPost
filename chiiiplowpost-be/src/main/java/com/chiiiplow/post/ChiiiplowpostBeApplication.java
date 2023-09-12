@@ -3,6 +3,7 @@ package com.chiiiplow.post;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = "com.chiiiplow.post")
 @MapperScan(basePackages = "com.chiiiplow.post.mapper")
+@EnableTransactionManagement
 public class ChiiiplowpostBeApplication {
 
 	public static void main(String[] args) {

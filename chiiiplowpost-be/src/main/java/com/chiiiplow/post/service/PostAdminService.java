@@ -13,4 +13,6 @@ public interface PostAdminService {
     R addPostAdmin(PostAdmin postAdmin);
 
     R login(PostAdmin postAdmin);
+
+    R checkLogin(PostAdmin postAdmin);
 }

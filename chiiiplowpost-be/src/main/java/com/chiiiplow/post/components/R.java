@@ -45,15 +45,21 @@ public class R implements Serializable {
         this.msg = response.getMessage();
     }
 
+    public R(Response response, Object data) {
+        this.code = response.getCode();
+        this.msg = response.getMessage();
+        this.data = data;
+    }
+
     /**
      * 成功
      * @param total
      * @param data
      * @return
      */
-    public static R ok(Object data,Long total){
+    public static R ok(Response response,Object data,Long total){
 
-        return new R(Response.CODE_200,data,total);
+        return new R(response,data,total);
     }
 
 
@@ -65,9 +71,13 @@ public class R implements Serializable {
      * 成功
      * @return
      */
-    public static R ok(){
+    public static R ok(Response response){
 
-        return new R(Response.CODE_200);
+        return new R(response);
+    }
+
+    public static R ok(Response response,Object data){
+        return new R(response,data);
     }
 
 

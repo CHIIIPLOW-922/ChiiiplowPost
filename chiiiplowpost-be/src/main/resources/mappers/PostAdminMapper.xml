@@ -10,6 +10,7 @@
         <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
         <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
         <result column="IsDeleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="login_flag" property="loginFlag" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addAdmin">
@@ -40,5 +41,18 @@
 
     <select id="login" resultMap="baseMap">
         SELECT id,username,password FROM postadmin WHERE username = #{username} AND password = #{password}
+    </select>
+
+    <update id="updateLoginFlag">
+        UPDATE postadmin
+        SET login_flag = #{loginFlag}
+        WHERE username = #{username};
+    </update>
+
+    <select id="getLoginStatus" resultMap="baseMap">
+        SELECT
+        login_flag
+        FROM postadmin
+        WHERE login_flag = #{loginFlag};
     </select>
 </mapper>

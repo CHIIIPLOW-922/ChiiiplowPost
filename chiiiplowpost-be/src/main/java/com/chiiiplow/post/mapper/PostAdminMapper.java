@@ -16,4 +16,8 @@ public interface PostAdminMapper {
     int addAdmin(PostAdmin postAdmin);
 
     PostAdmin login(PostAdmin postAdmin);
+
+    int updateLoginFlag(PostAdmin postAdmin);
+
+    PostAdmin getLoginStatus(PostAdmin postAdmin);
 }

@@ -12,7 +12,6 @@ import java.sql.Timestamp;
  */
 @Data
 public class PostAdmin implements Serializable {
-    private static final long serialVersionUID = 1L;
     private Integer id;
     private String username;
     private String password;
@@ -20,4 +19,5 @@ public class PostAdmin implements Serializable {
     private Timestamp createdAt;
     private Timestamp lastLogin;
     private boolean isDeleted;
+    private String loginFlag;
 }

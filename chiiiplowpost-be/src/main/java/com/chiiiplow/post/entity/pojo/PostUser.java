@@ -20,4 +20,5 @@ public class PostUser {
     private Timestamp createdAt;
     private boolean isDeleted;
     private Timestamp lastUpdated;
+    private String loginFlag;
 }
