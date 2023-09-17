@@ -21,7 +21,7 @@
 - Vue3
 - Vite
 - Vue Router
-- Element Plus
+- Naive UI
 
 ## 项目业务逻辑
 #### 1. 用户管理和认证：
@@ -121,7 +121,8 @@ CREATE TABLE IF NOT EXISTS PostAdmin (
     email VARCHAR(255) UNIQUE NOT NULL DEFAULT '' COMMENT '电子邮件地址',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后登录时间',
-    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除'
+    IsDeleted BOOLEAN DEFAULT false COMMENT '是否删除',
+    login_flag VARCHAR(255) NOT NULL DEFAULT '' COMMENT '登录标识'
 ) COMMENT '管理员信息表';
 
 
